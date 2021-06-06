@@ -67,8 +67,8 @@ app.post('/submitQuestions', (req, res) => {
       .then(result => res.send(result.insertedCount > 0 ))
 })
 app.get('/takeExam', (req, res) => {
-  const className = req.query.class
-  examQuestionCollection.find({class : className})
+  const className = req.query.grade
+  examQuestionCollection.find({grade : className})
   .toArray((err, documents) => {
     res.send(documents)
   })
