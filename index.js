@@ -41,7 +41,7 @@ app.patch('/updatedInfo', (req, res) =>{
   const userEmail = req.query.email
   studentCollection.updateOne({email: userEmail},
   {
-    $set: {class: req.body.class, 
+    $set: {grade: req.body.grade, 
       rollno: req.body.rollno
   }
   })
@@ -88,6 +88,12 @@ app.patch('/updatedResult', (req, res) =>{
 app.get('/getResultByTeacher', (req, res) => {
   const teacherEmail = req.query.teacher
   examQuestionCollection.find({teacher : teacherEmail})
+  .toArray((err, documents) => {
+    res.send(documents)
+  })
+})
+app.get('/fillupStudentsIdentity', (req, res) => {
+  studentCollection.find()
   .toArray((err, documents) => {
     res.send(documents)
   })
