@@ -18,6 +18,10 @@ client.connect(err => {
   const classsixqbCollection = client.db(`${process.env.DB_NAME}`).collection("classsixqb");
   const classelevenqbCollection = client.db(`${process.env.DB_NAME}`).collection("classelevenqb");
   const classfiveqbCollection = client.db(`${process.env.DB_NAME}`).collection("classfiveqb");
+  const classfourqbCollection = client.db(`${process.env.DB_NAME}`).collection("classfourqb");
+  const classthreeqbCollection = client.db(`${process.env.DB_NAME}`).collection("classthreeqb");
+  const classtwoqbCollection = client.db(`${process.env.DB_NAME}`).collection("classtwoqb");
+  const classoneqbCollection = client.db(`${process.env.DB_NAME}`).collection("classoneqb");
   const examQuestionCollection = client.db(`${process.env.DB_NAME}`).collection("examQuestion");
   const teacherCollection = client.db(`${process.env.DB_NAME}`).collection("teacher");
   const studentCollection = client.db(`${process.env.DB_NAME}`).collection("student");
@@ -54,12 +58,63 @@ app.post('/addNewQuestionToHsc', (req, res) => {
   classelevenqbCollection.insertOne(addQuestion)
       .then(result => res.send(result.insertedCount > 0 ))
 })
+app.post('/addNewQuestionToSsc', (req, res) => {
+  const addQuestion = req.body
+  classnineqbCollection.insertOne(addQuestion)
+      .then(result => res.send(result.insertedCount > 0 ))
+})
+app.post('/addNewQuestionToJsc', (req, res) => {
+  const addQuestion = req.body
+  classeightqbCollection.insertOne(addQuestion)
+      .then(result => res.send(result.insertedCount > 0 ))
+})
+app.post('/addNewQuestionToSeven', (req, res) => {
+  const addQuestion = req.body
+  classsevenqbCollection.insertOne(addQuestion)
+      .then(result => res.send(result.insertedCount > 0 ))
+})
+app.post('/addNewQuestionToSix', (req, res) => {
+  const addQuestion = req.body
+  classsixqbCollection.insertOne(addQuestion)
+      .then(result => res.send(result.insertedCount > 0 ))
+})
+app.post('/addNewQuestionToFive', (req, res) => {
+  const addQuestion = req.body
+  classfiveqbCollection.insertOne(addQuestion)
+      .then(result => res.send(result.insertedCount > 0 ))
+})
+app.post('/addNewQuestionToFour', (req, res) => {
+  const addQuestion = req.body
+  classfourqbCollection.insertOne(addQuestion)
+      .then(result => res.send(result.insertedCount > 0 ))
+})
+app.post('/addNewQuestionToThree', (req, res) => {
+  const addQuestion = req.body
+  classthreeqbCollection.insertOne(addQuestion)
+      .then(result => res.send(result.insertedCount > 0 ))
+})
+app.post('/addNewQuestionToTwo', (req, res) => {
+  const addQuestion = req.body
+  classtwoqbCollection.insertOne(addQuestion)
+      .then(result => res.send(result.insertedCount > 0 ))
+})
+app.post('/addNewQuestionToOne', (req, res) => {
+  const addQuestion = req.body
+  classoneqbCollection.insertOne(addQuestion)
+      .then(result => res.send(result.insertedCount > 0 ))
+})
 app.get('/getQuestionFromHsc', (req, res) => {
   const subjectName = req.query.subject
   classelevenqbCollection.find({subject : subjectName})
   .toArray((err, documents) => {
     res.send(documents)
   })
+})
+app.delete('/deleteSingleQuestionFromHsc/:id', (req, res) =>{
+  const id=req.params.id
+  shipmentCollection.deleteOne({_id: ObjectId(id)})
+  .then(result => 
+    res.send(result.deletedCount > 0))
 })
 app.post('/submitQuestions', (req, res) => {
   const submitQuestion = req.body
