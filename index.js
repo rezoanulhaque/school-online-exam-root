@@ -112,7 +112,7 @@ app.get('/getQuestionFromHsc', (req, res) => {
 })
 app.delete('/deleteSingleQuestionFromHsc/:id', (req, res) =>{
   const id=req.params.id
-  shipmentCollection.deleteOne({_id: ObjectId(id)})
+  classelevenqbCollection.deleteOne({_id: ObjectId(id)})
   .then(result => 
     res.send(result.deletedCount > 0))
 })
